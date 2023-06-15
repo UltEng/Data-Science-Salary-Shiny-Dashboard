@@ -1,0 +1,261 @@
+---
+title: "EDA Data Science Salaries"
+author: "Angga"
+date: '2023-06-04'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr) 
+library(plotly) 
+library(glue)
+library(scales) 
+library(tidyr) 
+library(ggpubr) 
+library(lubridate)
+library(echarts4r)
+library(caret)
+library(tidyverse)
+library(reshape2)
+```
+
+```{r}
+salary <- read.csv("data_science_salaries.csv")
+```
+
+```{r}
+head(salary)
+```
+```{r}
+salary <- salary %>%
+  arrange(work_year)
+head(salary)
+```
+
+```{r}
+count <- salary %>%
+      group_by(work_year) %>%
+      summarise(n = n()) %>%
+      rename(
+         "Total Data" = n
+        ) 
+
+count
+```
+
+```{r}
+count <- salary %>%
+      filter(work_year == c("2020", "2021")) %>%
+      summarise(n = n()) %>%
+      rename(
+         "Total Data" = n
+        ) 
+
+count
+```
+
+
+
+
+
+```{r}
+exp_chart <- salary %>%
+  group_by(experience_level) %>%
+  summarise(n = n()) %>%
+  rename(
+    "Total Data" = n
+  ) 
+
+exp_chart
+```
+```{r}
+pie1 <- exp_chart %>%
+  e_charts(experience_level) %>%
+  e_pie(`Total Data`, radius = c("50%", "70%")) %>%
+  e_title("Experience Level \n Composition",
+          left = "center",
+          top = "center") %>%
+  e_tooltip() %>%
+  e_labels(show = TRUE,
+           formatter = "{b} \n {d}%",
+           position = "outside"
+           ) %>%
+  e_legend(orient = "vertical",
+           left = "right",
+           top = "50px")
+pie1
+```
+
+```{r}
+rmt_chart <- salary %>%
+  group_by(remote_ratio) %>%
+  summarise(n = n()) %>%
+  rename(
+    "Total Data" = n
+  ) 
+
+rmt_chart
+```
+
+```{r}
+pie3 <- rmt_chart %>%
+  e_charts(remote_ratio) %>%
+  e_pie(`Total Data`, radius = c("50%", "70%")) %>%
+  e_title("Remote Ratio \n Composition",
+          left = "center",
+          top = "center") %>%
+  e_tooltip() %>%
+  e_labels(show = TRUE,
+           formatter = "{b} \n {d}%",
+           position = "outside"
+           ) %>%
+  e_legend(orient = "vertical",
+           left = "right",
+           top = "50px")
+pie3
+```
+
+```{r}
+cmp_chart <- salary %>%
+  group_by(company_size) %>%
+  summarise(n = n()) %>%
+  rename(
+    "Total Data" = n
+  ) 
+
+cmp_chart
+```
+
+```{r}
+pie4 <- cmp_chart %>%
+  e_charts(company_size) %>%
+  e_pie(`Total Data`, radius = c("50%", "70%")) %>%
+  e_title("Company Size \n Composition",
+          left = "center",
+          top = "center") %>%
+  e_tooltip() %>%
+  e_labels(show = TRUE,
+           formatter = "{b} \n {d}%",
+           position = "outside"
+           ) %>%
+  e_legend(orient = "vertical",
+           left = "right",
+           top = "50px")
+pie4
+```
+
+```{r}
+cry_chart <- salary %>%
+  group_by(salary_currency) %>%
+  summarise(n = n()) %>%
+  rename(
+    "total_data" = n
+  )%>%
+  arrange(total_data)
+
+cry_chart
+```
+
+```{r}
+bar1 <- cry_chart %>%
+  e_charts(salary_currency) %>%
+  e_bar(total_data, 
+        name = "total_data", 
+        legend = FALSE
+  ) %>%
+  e_flip_coords() %>%
+  e_labels(position = "right", 
+           formatter = htmlwidgets::JS("
+                        function (params) {
+                          return (parseFloat(params.value[0]).toLocaleString('en-US'));
+                        }
+                      ")
+  ) %>%
+  e_y_axis(show=TRUE) %>%
+  e_tooltip() %>%
+  e_color("#163ec2") %>%
+  e_title(text = "salary currency distribution",
+          left = "center")
+
+bar1
+
+```
+
+
+```{r}
+fig <- salary %>%
+  plot_ly(
+    x = ~experience_level,
+    y = ~salary_in_usd,
+    split = ~experience_level,
+    type = 'violin',
+    box = list(
+      visible = T
+    ),
+    meanline = list(
+      visible = T
+    )
+  ) 
+
+fig <- fig %>%
+  layout(
+    xaxis = list(
+      title = "Experience Level"
+    ),
+    yaxis = list(
+      title = "Salary",
+      zeroline = FALSE
+    )
+  )
+
+fig
+```
+
+```{r}
+    bar3_chart  <- salary %>%
+      filter(work_year %in% input$input_year) %>%
+      group_by(get(input$variable4)) %>%
+      summarise(average_salary = round(mean(salary_in_usd),2)) %>%
+      arrange(desc(average_salary)) %>%
+      mutate_each(funs(prettyNum(., big.mark=",")))
+```
+
+```{r}
+dummies <- dummyVars(~ ., data= salary %>% select(experience_level, salary_in_usd))
+test <- predict(dummies, newdata = salary)
+test
+```
+
+```{r}
+data<-cor(test)
+ 
+data1<-melt(data)
+```
+
+```{r}
+heatmap <- data1 %>%
+    e_charts(Var1) %>%
+    e_heatmap(Var2, value, itemStyle = list(emphasis = list(shadowBlur = 10))) %>%
+    e_visual_map(value) %>%
+    e_labels(position='inside')
+heatmap
+```
+
+```{r}
+    dummies <- dummyVars(~ ., data= salary %>% select(experience_level, salary_in_usd))
+    test <- predict(dummies, newdata = salary)
+    data<-cor(test) 
+    data1<-melt(data)
+    data1$Var1 <- gsub("experience_level","",as.character(data1$Var1))
+    data1$Var2 <- gsub("experience_level","",as.character(data1$Var2))
+    data1
+```
+
+
+
+
+

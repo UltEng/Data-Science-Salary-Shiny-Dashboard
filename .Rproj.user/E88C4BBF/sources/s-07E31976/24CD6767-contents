@@ -1,0 +1,111 @@
+---
+title: "Briefing DV capstone"
+author: "Angga Chandra Putra"
+date: "`r Sys.Date()`"
+output: 
+ html_document:
+   toc: true
+   toc_float: true
+   highlight: zenburn
+   df_print: paged
+   theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+File ini berisi template untuk mejawab pertanyaan 5W+1H saat briefing Capstone Data Visualization sebagai langkah awal sebelum membuat Dashboard. Silakan Bapak/Ibu mengisi jawaban di bawah. 
+
+File ini tidak akan dinilai namun Bapak/Ibu **WAJIB** disubmit ke dalam classroom pada hari H briefing Capstone Data Visualization.
+
+# What
+
+Tentukan tujuan atau informasi yang ingin ditampilkan dalam dashboard
+
+**Jawab**
+
+Tujuan yang ingin dicapai atau informasi yang ingin disampaikan:
+
+- Finding the most popular data science job title/role
+- Finding the salary distribution of data science
+- Finding which factor correlate the most with salary
+
+
+# Who
+
+Untuk siapa dashboard ini dibuat? Siapa target pembaca dari dashboard ini?
+
+**Jawab**
+
+This dashboard is created to help people who is interested in data science career  
+
+# Why
+
+Apakah data yang dibuat relevan atau sesuai dengan tujuan? Mengapa?
+
+**Jawab**
+
+The dataset that is suitable for this project is the data science salary acquired from Kaggle (https://www.kaggle.com/datasets/arnabchaki/data-science-salaries-2023). 
+
+# When
+
+Apakah data yang digunakan masih *up to date* atau masih relevan dengan kondisi sekarang? Apakah ada informasi tentang tanggal update terakhir dari data tersebut?
+
+**Jawab**
+
+The data was updated on April 13, 2023 so it is still relevant with the current condition.
+
+
+# How
+
+Bagaimana Bapak/Ibu menggunakan visualisasi untuk menjawab tujuan yang telah disebutkan? 
+
+Buat plot yang akan dimasukkan ke dalam dashboard. Boleh dalam bentuk `ggplot` maupun `plotly`.
+
+**Jawab**
+
+Plot untuk menjawab tujuan pertama
+```{r}
+# Bar chart to show the count of each job title
+```
+
+Plot kedua
+```{r}
+# Histogram/Violin chart to show the salary distribution and bar chart to show the average
+```
+
+Plot ketiga
+```{r}
+# Scatterplot/heatmap to show the correlation of each variable toward salary your code here
+```
+
+Buat chunk baru apabila ada lebih dari 3 plot.
+
+# Where
+
+Bagaimana desain layout atau tata letak dashboard yang akan dibuat?
+
+**Jawab**
+
+Contoh penulisan layout. 
+
+Tab atau halaman pertama (Overview)
+
+- Single Value Chart to show the average salary in usd
+- Bar Chart to show the distribution for categorical variable (except employee residence & company location)
+- Histogram to show the distribution for numerical variable
+- Map chart to show the distribution for employee residence & company location
+
+
+Tab atau halaman kedua (Salary Analysis)
+
+- Violin chart to show the salary distribution based on choosen categorical variable
+- Bar chart to show the average salary based on choosen categorical variable
+- Heatmap to show the correlation of each variable toward salary
+
+Tab atau halaman ketiga (Data)
+
+- Table showing the detail of each column
+- Table showing the full Dataset
+

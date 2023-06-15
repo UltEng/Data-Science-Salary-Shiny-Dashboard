@@ -1,0 +1,6 @@
+"0","heatmap <- data1 %>%"
+"0","    e_charts(Var1) %>%"
+"0","    e_heatmap(Var2, value, itemStyle = list(emphasis = list(shadowBlur = 10))) %>%"
+"0","    e_visual_map(value) %>%"
+"0","    e_labels(position='inside')"
+"0","heatmap"

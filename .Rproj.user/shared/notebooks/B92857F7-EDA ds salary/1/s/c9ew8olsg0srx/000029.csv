@@ -1,0 +1,7 @@
+"0","    dummies <- dummyVars(~ ., data= salary %>% select(experience_level, salary_in_usd))"
+"0","    test <- predict(dummies, newdata = salary)"
+"0","    data<-cor(test) "
+"0","    data1<-melt(data)"
+"0","    data1$Var1 <- gsub(""experience_level"","""",as.character(data1$Var1))"
+"0","    data1$Var2 <- gsub(""experience_level"","""",as.character(data1$Var2))"
+"0","    data1"
