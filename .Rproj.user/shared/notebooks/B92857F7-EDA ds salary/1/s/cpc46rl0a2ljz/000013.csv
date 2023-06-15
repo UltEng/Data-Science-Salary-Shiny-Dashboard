@@ -1,3 +1,0 @@
-"0","salary <- salary %>%"
-"0","  arrange(work_year)"
-"0","head(salary)"
