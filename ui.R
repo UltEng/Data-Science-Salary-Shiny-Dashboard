@@ -48,7 +48,7 @@ dashboardPage(title = 'Data Science Salary Analysis Dashboard',
                                         selected = "Experience Level")),
                             box(width = 6,
                                 selectInput(inputId = "variable2", 
-                                            label = "Choose What to show with VBar Chart", 
+                                            label = "Choose What to show with HBar Chart", 
                                             choices = selectbarchart,
                                             selected = "employee_residence"))
                           ),
