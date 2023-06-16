@@ -36,6 +36,10 @@ The dataset consist of 11 columns and that are:
 
 <img src="https://raw.githubusercontent.com/UltEng/Data-Science-Salary-Shiny-Dashboard/master/dashboard.png">
 
+The dashboard can be access through
+
+https://angga-chandra.shinyapps.io/Data_Science_Salary/
+
 This Dashboard consist of some element and that are
 
 ### A. Sidebar 
