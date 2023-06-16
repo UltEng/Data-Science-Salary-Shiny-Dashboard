@@ -38,7 +38,7 @@ The dataset consist of 11 columns and that are:
 
 The dashboard can be access through
 
-https://angga-chandra.shinyapps.io/Data_Science_Salary/
+https://angga-chandra.shinyapps.io/DS_Salary/
 
 This Dashboard consist of some element and that are
 

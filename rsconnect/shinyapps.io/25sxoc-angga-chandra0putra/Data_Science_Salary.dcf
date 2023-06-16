@@ -5,9 +5,9 @@ account: 25sxoc-angga-chandra0putra
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9247466
-bundleId: 7315647
-url: https://25sxoc-angga-chandra0putra.shinyapps.io/Data_Science_Salary/
-when: 1686134731.28834
-lastSyncTime: 1686134731.28836
+bundleId: 7352714
+url: https://angga-chandra.shinyapps.io/Data_Science_Salary/
+when: 1686899688.44592
+lastSyncTime: 1686899688.44598
 asMultiple: FALSE
 asStatic: FALSE
