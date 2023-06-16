@@ -38,7 +38,7 @@ The dataset consist of 11 columns and that are:
 
 This Dashboard consist of some element and that are
 
-### Sidebar 
+### A. Sidebar 
 
 <img src="https://raw.githubusercontent.com/UltEng/Data-Science-Salary-Shiny-Dashboard/master/sidebar.png">
 
@@ -49,7 +49,7 @@ The Sidebar consist of
 3. Data Table Page Button: This button function is to move the dashboard page to Data Table Page
 4. Year Filter Button: This button function is to filter  dataset used in the dashboard by year and it affect all the chart in all page used in this dashboard
 
-### Overview Page
+### B. Overview Page
 
 The Overview Page will show the overview of the dataset like the number of data, how is the composition of each variable. The element of this page consist of
 
@@ -106,7 +106,7 @@ This chart is made using echarts4r and it will show the top 10 count of selected
 
 This chart is made using echarts4r and it will show the top 5 most popular data science job title
 
-### Analysis Page
+### C. Analysis Page
 
 The Analysis Page will show the salary analysis of the dataset like the statistic summary of salary, the distribution of salary, correlation of other variable toward salary and salary of each job title. The element of this page consist of
 
@@ -181,7 +181,7 @@ This slider input button function is to choose range of salary in USD to be show
 This table will show the average salary in USD of each job title based on the range of salary in USD selected in slider 
 
 
-### Data Table Page
+### D. Data Table Page
 
 <img src="https://raw.githubusercontent.com/UltEng/Data-Science-Salary-Shiny-Dashboard/master/table2.png">
 
